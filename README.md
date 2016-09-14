@@ -1,10 +1,10 @@
-# Pre-work - Simple Todo App
+# Pre-work - *Simple Todo App*
 
-Todo App is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
+**Todo App** is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
 
-Submitted by: Abhishek Desai
+Submitted by: **Abhishek Desai**
 
-Time spent: 7 hours spent in total
+Time spent: **7** hours spent in total
 
 ## User Stories
 
