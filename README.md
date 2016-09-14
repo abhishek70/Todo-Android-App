@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 * [ ] Add support for selecting the priority of each todo item (and display in listview item)
 * [ ] Tweak the style improving the UI / UX, play with colors, images or backgrounds
 
-The following **additional** features are:
+The following **additional** features are implemented:
 
 * [ ] Add todo item status (Completed, Pending, In Progress)
 * [ ] Add todo item priority level (Low, Medium, High) 
