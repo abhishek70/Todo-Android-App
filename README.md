@@ -39,7 +39,6 @@ App Icon - ICONFINDER (https://www.iconfinder.com/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
 
 ## License
 
