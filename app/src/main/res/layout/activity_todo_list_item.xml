@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/list_item_height">
+
+    <LinearLayout
+        android:id="@+id/item_view"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/todo_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textAppearance="?android:textAppearanceMedium"
+            tools:text="Go to GYM"/>
+
+        <TextView
+            android:id="@+id/todo_note_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            tools:text="Peform some exercise in the GYM"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
