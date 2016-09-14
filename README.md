@@ -33,7 +33,9 @@ Here's a walkthrough of implemented user stories:
 
 ![Screenshot](https://github.com/abhishek70/Todo-Android-App/blob/master/todo-app.gif)
 
-GIF created with [EZGIF.COM](http://ezgif.com/).
+GIF created with EZGIF.COM (http://ezgif.com/).
+
+App Icon - ICONFINDER (https://www.iconfinder.com/).
 
 ## Notes
 
@@ -41,7 +43,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2016 Abhishek Desai
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
