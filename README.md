@@ -25,7 +25,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [ ] Add todo item status (Completed, Pending, In Progress)
+* [ ] Add todo item priority level (Low, Medium, High) 
 
 ## Video Walkthrough
 
