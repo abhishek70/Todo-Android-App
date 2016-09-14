@@ -107,6 +107,7 @@ public class TodoItemActivity extends AppCompatActivity {
 
         if(name.length() > 0) {
 
+            // Add todoItem in the DB table
             long insertId = db.addTodoItem(new TodoItem(name,note));
 
             if(insertId!=-1) {
@@ -150,7 +151,9 @@ public class TodoItemActivity extends AppCompatActivity {
 
         if(name.length() > 0) {
 
+            // update todoItem in the DB table
             boolean success = db.updateTodoItem(new TodoItem(todoId,name,note));
+
             if(success) {
 
                 Toast.makeText(this, R.string.edit_todo_success_msg, Toast.LENGTH_SHORT).show();
