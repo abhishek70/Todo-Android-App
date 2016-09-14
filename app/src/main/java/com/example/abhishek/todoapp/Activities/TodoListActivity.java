@@ -19,7 +19,9 @@ import com.example.abhishek.todoapp.Helpers.DatabaseHandler;
 import com.example.abhishek.todoapp.Models.TodoItem;
 import java.util.ArrayList;
 
-
+/**
+ * TodoList Activity will list all the todoItems from the database
+ */
 public class TodoListActivity extends AppCompatActivity implements
         AdapterView.OnItemClickListener,
         AdapterView.OnItemLongClickListener {

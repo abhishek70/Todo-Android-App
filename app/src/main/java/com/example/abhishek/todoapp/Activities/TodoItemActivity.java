@@ -14,7 +14,9 @@ import com.example.abhishek.todoapp.Models.TodoItem;
 import com.example.abhishek.todoapp.Models.TodoItem;
 import com.example.abhishek.todoapp.R;
 
-
+/**
+ * TodoItem Activity will perform add and update todoItem
+ */
 public class TodoItemActivity extends AppCompatActivity {
 
     private DatabaseHandler db;
@@ -93,7 +95,7 @@ public class TodoItemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Todo : Needs to refactor the add and edit todoItem method
+    // Todo : Needs to refactor the add and edit todoItem method into one
 
     /**
      * Add todoItem
