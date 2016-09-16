@@ -15,4 +15,6 @@
     <string name="todo_name_required_msg">Please provide Todo Name</string>
     <string name="edit_todo_error_msg">Error while updating Todo Item</string>
     <string name="edit_todo_success_msg">Todo Item has been updated successfully</string>
+    <string name="todo_name_tv">Todo Name</string>
+    <string name="todo_note_tv">Todo Note</string>
 </resources>

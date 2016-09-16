@@ -17,7 +17,8 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:layout_marginRight="16dp"
-            android:text="Todo Name"/>
+            android:layout_marginEnd="16dp"
+            android:text="@string/todo_name_tv"/>
 
         <EditText
             android:id="@+id/todo_name_et"
@@ -43,7 +44,8 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:layout_marginRight="16dp"
-            android:text="Todo Note"/>
+            android:layout_marginEnd="16dp"
+            android:text="@string/todo_note_tv"/>
 
          <EditText
             android:id="@+id/todo_note_et"
