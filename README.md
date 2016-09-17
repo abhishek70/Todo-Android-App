@@ -25,8 +25,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] Add todo item status (Completed, Pending, In Progress)
-* [ ] Add todo item priority level (Low, Medium, High) 
+* [ ] Add todo item status (Completed, Pending, In Progress) 
 
 ## Video Walkthrough
 
