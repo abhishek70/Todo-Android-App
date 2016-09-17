@@ -20,11 +20,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TODO_TABLE_NAME = "TBL_TODOS";
     private final ArrayList<TodoItem> todoItems = new ArrayList<TodoItem>();
 
+    private static final String TODO_ID   = "todoId";
+    private static final String TODO_NAME = "todoName";
+    private static final String TODO_NOTE = "todoNote";
+    private static final String TODO_PRIORITY = "todoPriority";
+
+
     private static final String TODO_TABLE_CREATE =
             "CREATE TABLE " + TODO_TABLE_NAME + " (" +
-                    "todoId" + " INTEGER PRIMARY KEY AUTOINCREMENT,  " +
-                    "todoName" + " TEXT, " +
-                    "todoNote" + " TEXT);";
+                    TODO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,  " +
+                    TODO_NAME + " TEXT, " +
+                    TODO_NOTE + " TEXT, " +
+                    TODO_PRIORITY + " CHAR(10) NOT NULL DEFAULT 'LOW');";
 
     /**
      * Constructor
@@ -75,10 +82,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         // todoName
-        values.put("todoName", todoItem.getTodoName());
+        values.put(TODO_NAME, todoItem.getTodoName());
 
         // todoNote
-        values.put("todoNote", todoItem.getTodoNote());
+        values.put(TODO_NOTE, todoItem.getTodoNote());
+
+        //todoPriority
+        values.put(TODO_PRIORITY, todoItem.getTodoPriority());
 
         // Inserting TodoItem
         long lastInsertId = db.insert(TODO_TABLE_NAME, null, values);
@@ -101,8 +111,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Creating cursor
-        Cursor cursor = db.query(TODO_TABLE_NAME, new String[] { "todoId",
-                        "todoName", "todoNote" },  "todoId = ?",
+        Cursor cursor = db.query(TODO_TABLE_NAME, new String[] { TODO_ID,
+                        TODO_NAME, TODO_NOTE, TODO_PRIORITY },  TODO_ID+" = ?",
                 new String[] { String.valueOf(todoId) }, null, null, null, null);
 
         if (cursor != null)
@@ -113,8 +123,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null) {
 
             // Fetching todoItem Details
-            todoItem = new TodoItem(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1), cursor.getString(2));
+            todoItem = new TodoItem(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
+            );
         }
         // return todoItem
         if (cursor != null) {
@@ -154,6 +168,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     todoItem.setTodoId(Integer.parseInt(cursor.getString(0)));
                     todoItem.setTodoName(cursor.getString(1));
                     todoItem.setTodoNote(cursor.getString(2));
+                    todoItem.setTodoPriority(cursor.getString(3));
 
                     // Adding todoItem to list
                     todoItems.add(todoItem);
@@ -190,13 +205,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         // todoName
-        values.put("todoName", todoItem.getTodoName());
+        values.put(TODO_NAME, todoItem.getTodoName());
 
         // todoNote
-        values.put("todoNote", todoItem.getTodoNote());
+        values.put(TODO_NOTE, todoItem.getTodoNote());
+
+        //todoPriority
+        values.put(TODO_PRIORITY, todoItem.getTodoPriority());
 
         // updating todoItem
-        int rowCount = db.update(TODO_TABLE_NAME, values,  " todoId = ?",
+        int rowCount = db.update(TODO_TABLE_NAME, values,  TODO_ID+"  = ?",
                 new String[] { String.valueOf(todoItem.getTodoId()) });
 
         return rowCount > 0;
@@ -213,7 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // deleting the todoItem
-        db.delete(TODO_TABLE_NAME, " todoId = ?",
+        db.delete(TODO_TABLE_NAME, TODO_ID+"  = ?",
                 new String[] { String.valueOf(todoId) });
 
         // Closing DB Connection

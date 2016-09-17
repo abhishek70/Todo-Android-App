@@ -17,4 +17,10 @@
     <string name="edit_todo_success_msg">Todo Item has been updated successfully</string>
     <string name="todo_name_tv">Todo Name</string>
     <string name="todo_note_tv">Todo Note</string>
+    <string name="todo_priority_tv">Todo Priority</string>
+    <string-array name="todo_priority_choices">
+        <item>LOW</item>
+        <item>MEDIUM</item>
+        <item>HIGH</item>
+    </string-array>
 </resources>

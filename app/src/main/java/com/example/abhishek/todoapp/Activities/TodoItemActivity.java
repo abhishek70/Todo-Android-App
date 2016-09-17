@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.abhishek.todoapp.Helpers.DatabaseHandler;
@@ -20,9 +24,10 @@ import com.example.abhishek.todoapp.R;
 public class TodoItemActivity extends AppCompatActivity {
 
     private DatabaseHandler db;
-    private String action;
+    private String action, prioritySel;
     private long todoId;
     private EditText todoName, todoNote;
+    private Spinner todoPrioritySpinner;
 
 
     @Override
@@ -33,6 +38,19 @@ public class TodoItemActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         todoName = (EditText) findViewById(R.id.todo_name_et);
         todoNote = (EditText) findViewById(R.id.todo_note_et);
+        todoPrioritySpinner = (Spinner) findViewById(R.id.todo_priority_spinner);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.todo_priority_choices, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        todoPrioritySpinner.setAdapter(spinnerAdapter);
+
+
         action = getIntent().getStringExtra("ADDEDITKEY");
 
         if(action.equals("Add")) {
@@ -47,8 +65,38 @@ public class TodoItemActivity extends AppCompatActivity {
             TodoItem todoItem = db.getTodoItemById((int) todoId);
             todoName.setText(todoItem.getTodoName());
             todoNote.setText(todoItem.getTodoNote());
+            todoPrioritySpinner.setSelection(getSpinnerIndexbyValue(todoItem.getTodoPriority()));
         }
 
+
+        todoPrioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                prioritySel = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    /**
+     * Get Spinner Index from the value
+     * @param priorityValue
+     * @return
+     */
+    public int getSpinnerIndexbyValue(String priorityValue){
+
+        int index = 0;
+
+        for (int i=0;i<todoPrioritySpinner.getCount();i++){
+            if (todoPrioritySpinner.getItemAtPosition(i).equals(priorityValue)){
+                index = i;
+            }
+        }
+        return index;
     }
 
     @Override
@@ -102,13 +150,14 @@ public class TodoItemActivity extends AppCompatActivity {
      */
     public void addTodoItem() {
 
-        String name = todoName.getText().toString();
-        String note = todoNote.getText().toString();
+        String name     = todoName.getText().toString();
+        String note     = todoNote.getText().toString();
+        String priority = prioritySel;
 
         if(name.length() > 0) {
 
             // Add todoItem in the DB table
-            long insertId = db.addTodoItem(new TodoItem(name,note));
+            long insertId = db.addTodoItem(new TodoItem(name,note,priority));
 
             if(insertId!=-1) {
 
@@ -120,6 +169,7 @@ public class TodoItemActivity extends AppCompatActivity {
                 data.putExtra("todoId", insertId);
                 data.putExtra("todoName", name);
                 data.putExtra("todoNote", note);
+                data.putExtra("todoPriority", priority);
 
                 // Passing back to the previous activity
                 setResult(RESULT_OK, data);
@@ -146,13 +196,14 @@ public class TodoItemActivity extends AppCompatActivity {
     public void editTodoItem() {
 
 
-        String name = todoName.getText().toString();
-        String note = todoNote.getText().toString();
+        String name     = todoName.getText().toString();
+        String note     = todoNote.getText().toString();
+        String priority = prioritySel;
 
         if(name.length() > 0) {
 
             // update todoItem in the DB table
-            boolean success = db.updateTodoItem(new TodoItem(todoId,name,note));
+            boolean success = db.updateTodoItem(new TodoItem(todoId,name,note,priority));
 
             if(success) {
 

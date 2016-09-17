@@ -57,6 +57,9 @@ public class TodoListAdapter extends ArrayAdapter<TodoItem> {
         TextView todoNote = (TextView) convertView.findViewById(R.id.todo_note_tv);
         todoNote.setText(todoItem.getTodoNote());
 
+        TextView todoPriority = (TextView) convertView.findViewById(R.id.todo_priority_tv);
+        todoPriority.setText(todoItem.getTodoPriority());
+
         return convertView;
     }
 
