@@ -19,7 +19,10 @@
 
         <activity
             android:name=".Activities.TodoItemActivity"
-            android:parentActivityName=".Activities.TodoListActivity"></activity>
+            android:parentActivityName=".Activities.TodoListActivity"
+            android:label="Todo Item">
+
+        </activity>
     </application>
 
 </manifest>

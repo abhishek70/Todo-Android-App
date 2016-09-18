@@ -8,6 +8,7 @@ public class TodoItem {
     private long mTodoId;
     private String mTodoName;
     private String mTodoNote;
+    private String mTodoPriority;
 
     /**
      * Empty Constructor
@@ -21,10 +22,11 @@ public class TodoItem {
      * @param todoName
      * @param todoNote
      */
-    public TodoItem(long todoId, String todoName, String todoNote){
-        mTodoId     = todoId;
-        mTodoName   = todoName;
-        mTodoNote   = todoNote;
+    public TodoItem(long todoId, String todoName, String todoNote, String todoPriority){
+        mTodoId         = todoId;
+        mTodoName       = todoName;
+        mTodoNote       = todoNote;
+        mTodoPriority   = todoPriority;
     }
 
     /**
@@ -32,9 +34,10 @@ public class TodoItem {
      * @param todoName
      * @param todoNote
      */
-    public TodoItem(String todoName, String todoNote){
-        mTodoName   = todoName;
-        mTodoNote   = todoNote;
+    public TodoItem(String todoName, String todoNote, String todoPriority){
+        mTodoName       = todoName;
+        mTodoNote       = todoNote;
+        mTodoPriority   = todoPriority;
     }
 
     /**
@@ -88,5 +91,21 @@ public class TodoItem {
     }
 
 
+    /**
+     * Setter method for TodoPriority
+     * @param todoPriority
+     */
+    public void setTodoPriority(String todoPriority) {
+        mTodoPriority = todoPriority;
+    }
+
+
+    /**
+     * Getter method for TodoPriority
+     * @return
+     */
+    public String getTodoPriority() {
+        return mTodoPriority;
+    }
 
 }
