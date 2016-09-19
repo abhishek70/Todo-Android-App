@@ -18,6 +18,7 @@
     <string name="todo_name_tv">Todo Name</string>
     <string name="todo_note_tv">Todo Note</string>
     <string name="todo_priority_tv">Todo Priority</string>
+    <string name="todo_date_tv">Todo Date</string>
     <string-array name="todo_priority_choices">
         <item>LOW</item>
         <item>MEDIUM</item>

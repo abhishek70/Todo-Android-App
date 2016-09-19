@@ -130,9 +130,10 @@ public class TodoListActivity extends AppCompatActivity implements
             String todoName = data.getExtras().getString("todoName");
             String todoNote = data.getExtras().getString("todoNote");
             String todoPriority = data.getExtras().getString("todoPriority");
+            String todoDueDate  = data.getExtras().getString("todoDueDate");
 
             // Adding new todoItem to the list
-            todoItems.add(new TodoItem(todoId, todoName, todoNote, todoPriority));
+            todoItems.add(new TodoItem(todoId, todoName, todoNote, todoPriority, todoDueDate));
 
             // Notifying the adapter to load the new todoItem
             todoListAdapter.notifyDataSetChanged();
@@ -174,12 +175,14 @@ public class TodoListActivity extends AppCompatActivity implements
                 String todoName = data.get(i).getTodoName();
                 String todoNote = data.get(i).getTodoNote();
                 String todoPriority = data.get(i).getTodoPriority();
+                String todoDueDate  = data.get(i).getTodoDueDate();
 
                 TodoItem todoItem = new TodoItem();
                 todoItem.setTodoId(todoId);
                 todoItem.setTodoName(todoName);
                 todoItem.setTodoNote(todoNote);
                 todoItem.setTodoPriority(todoPriority);
+                todoItem.setTodoDueDate(todoDueDate);
 
                 todoItems.add(todoItem);
             }

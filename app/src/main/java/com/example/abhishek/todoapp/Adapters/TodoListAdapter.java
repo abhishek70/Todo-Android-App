@@ -1,6 +1,7 @@
 package com.example.abhishek.todoapp.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,11 @@ import android.widget.TextView;
 import com.example.abhishek.todoapp.R;
 import com.example.abhishek.todoapp.Models.TodoItem;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -50,15 +55,33 @@ public class TodoListAdapter extends ArrayAdapter<TodoItem> {
         }
 
         // TodoName
-        TextView todoName = (TextView) convertView.findViewById(R.id.todo_name_tv);
-        todoName.setText(todoItem.getTodoName());
+        TextView todoNameTv = (TextView) convertView.findViewById(R.id.todo_name_tv);
+        todoNameTv.setText(todoItem.getTodoName());
 
         // TodoNote
-        TextView todoNote = (TextView) convertView.findViewById(R.id.todo_note_tv);
-        todoNote.setText(todoItem.getTodoNote());
+        TextView todoNoteTv = (TextView) convertView.findViewById(R.id.todo_note_tv);
+        todoNoteTv.setText(todoItem.getTodoNote());
 
-        TextView todoPriority = (TextView) convertView.findViewById(R.id.todo_priority_tv);
-        todoPriority.setText(todoItem.getTodoPriority());
+        TextView todoPriorityTv = (TextView) convertView.findViewById(R.id.todo_priority_tv);
+        todoPriorityTv.setText(todoItem.getTodoPriority());
+
+        TextView todoDueDateTv  = (TextView) convertView.findViewById(R.id.todo_due_date_tv);
+
+
+        try {
+            String dateString = todoItem.getTodoDueDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Date date = sdf.parse(dateString);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
+            String formattedDate = outputFormat.format(date);
+
+            todoDueDateTv.setText("Due : "+formattedDate);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }

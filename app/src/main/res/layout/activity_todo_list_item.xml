@@ -26,15 +26,24 @@
             android:textStyle="bold"
             android:textColor="#000000"
             android:textAppearance="?android:textAppearanceMedium"
-            tools:text="Go to GYM"/>
+            tools:text="Github"/>
 
         <TextView
             android:id="@+id/todo_note_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            tools:text="Peform some exercise in the GYM"
+            tools:text="Submit code to the Github"
             android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/todo_due_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#5D5D5D"
+            tools:text="Sep 21, 2016"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

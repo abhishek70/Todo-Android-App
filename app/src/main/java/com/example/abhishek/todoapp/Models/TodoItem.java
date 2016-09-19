@@ -1,5 +1,7 @@
 package com.example.abhishek.todoapp.Models;
 
+import java.util.Date;
+
 /**
  * Created by abhishek on 9/12/16.
  */
@@ -9,6 +11,7 @@ public class TodoItem {
     private String mTodoName;
     private String mTodoNote;
     private String mTodoPriority;
+    private String mTodoDueDate;
 
     /**
      * Empty Constructor
@@ -21,12 +24,15 @@ public class TodoItem {
      * Constructor for setting TodoName, TodoNote
      * @param todoName
      * @param todoNote
+     * @param todoDueDate
      */
-    public TodoItem(long todoId, String todoName, String todoNote, String todoPriority){
+    public TodoItem(long todoId, String todoName, String todoNote, String todoPriority,
+                    String todoDueDate){
         mTodoId         = todoId;
         mTodoName       = todoName;
         mTodoNote       = todoNote;
         mTodoPriority   = todoPriority;
+        mTodoDueDate    = todoDueDate;
     }
 
     /**
@@ -34,10 +40,12 @@ public class TodoItem {
      * @param todoName
      * @param todoNote
      */
-    public TodoItem(String todoName, String todoNote, String todoPriority){
+    public TodoItem(String todoName, String todoNote, String todoPriority,
+                    String todoDueDate){
         mTodoName       = todoName;
         mTodoNote       = todoNote;
         mTodoPriority   = todoPriority;
+        mTodoDueDate    = todoDueDate;
     }
 
     /**
@@ -106,6 +114,15 @@ public class TodoItem {
      */
     public String getTodoPriority() {
         return mTodoPriority;
+    }
+
+
+    public void setTodoDueDate(String todoDueDate) {
+        mTodoDueDate = todoDueDate;
+    }
+
+    public String getTodoDueDate() {
+        return mTodoDueDate;
     }
 
 }

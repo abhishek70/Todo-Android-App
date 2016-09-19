@@ -15,15 +15,16 @@ import java.util.ArrayList;
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "DB_TODOS";
+    private static final int DATABASE_VERSION   = 1;
+    private static final String DATABASE_NAME   = "DB_TODOS";
     private static final String TODO_TABLE_NAME = "TBL_TODOS";
     private final ArrayList<TodoItem> todoItems = new ArrayList<TodoItem>();
 
-    private static final String TODO_ID   = "todoId";
-    private static final String TODO_NAME = "todoName";
-    private static final String TODO_NOTE = "todoNote";
-    private static final String TODO_PRIORITY = "todoPriority";
+    private static final String TODO_ID         = "todoId";
+    private static final String TODO_NAME       = "todoName";
+    private static final String TODO_NOTE       = "todoNote";
+    private static final String TODO_PRIORITY   = "todoPriority";
+    private static final String TODO_DATE       = "todoDueDate";
 
 
     private static final String TODO_TABLE_CREATE =
@@ -31,7 +32,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     TODO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,  " +
                     TODO_NAME + " TEXT, " +
                     TODO_NOTE + " TEXT, " +
-                    TODO_PRIORITY + " CHAR(10) NOT NULL DEFAULT 'LOW');";
+                    TODO_PRIORITY + " CHAR(10) NOT NULL DEFAULT 'LOW', " +
+                    TODO_DATE + " DATE );";
 
     /**
      * Constructor
@@ -90,6 +92,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //todoPriority
         values.put(TODO_PRIORITY, todoItem.getTodoPriority());
 
+        //todoDueDate
+        values.put(TODO_DATE, todoItem.getTodoDueDate());
+
         // Inserting TodoItem
         long lastInsertId = db.insert(TODO_TABLE_NAME, null, values);
 
@@ -112,7 +117,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Creating cursor
         Cursor cursor = db.query(TODO_TABLE_NAME, new String[] { TODO_ID,
-                        TODO_NAME, TODO_NOTE, TODO_PRIORITY },  TODO_ID+" = ?",
+                        TODO_NAME, TODO_NOTE, TODO_PRIORITY, TODO_DATE },  TODO_ID+" = ?",
                 new String[] { String.valueOf(todoId) }, null, null, null, null);
 
         if (cursor != null)
@@ -127,7 +132,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     Integer.parseInt(cursor.getString(0)),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3)
+                    cursor.getString(3),
+                    cursor.getString(4)
             );
         }
         // return todoItem
@@ -169,6 +175,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     todoItem.setTodoName(cursor.getString(1));
                     todoItem.setTodoNote(cursor.getString(2));
                     todoItem.setTodoPriority(cursor.getString(3));
+                    todoItem.setTodoDueDate(cursor.getString(4));
 
                     // Adding todoItem to list
                     todoItems.add(todoItem);
@@ -212,6 +219,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //todoPriority
         values.put(TODO_PRIORITY, todoItem.getTodoPriority());
+
+        //todoDueDate
+        values.put(TODO_DATE, todoItem.getTodoDueDate());
 
         // updating todoItem
         int rowCount = db.update(TODO_TABLE_NAME, values,  TODO_ID+"  = ?",

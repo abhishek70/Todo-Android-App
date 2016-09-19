@@ -1,87 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:orientation="vertical" >
+    android:fillViewport="true">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/todo_name_tv"/>
-
-        <EditText
-            android:id="@+id/todo_name_et"
+        <!-- TodoName -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" >
+            android:orientation="vertical">
 
-            <requestFocus />
-        </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:text="@string/todo_name_tv"/>
+
+            <EditText
+                android:id="@+id/todo_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+
+        <!-- TodoName -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:text="@string/todo_date_tv"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:focusable="false"
+                android:id="@+id/todo_date_et" />
+
+        </LinearLayout>
+
+        <!-- TodoPriority -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:text="@string/todo_priority_tv"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/todo_priority_spinner" />
+
+        </LinearLayout>
+
+
+        <!-- TodoNote -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:text="@string/todo_note_tv"/>
+
+            <EditText
+                android:id="@+id/todo_note_et"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:minLines="1"
+                android:gravity="top|left"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:scrollbars="vertical"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
+</ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/todo_note_tv"/>
-
-         <EditText
-            android:id="@+id/todo_note_et"
-            android:inputType="textMultiLine"
-            android:lines="1"
-            android:minLines="1"
-            android:gravity="top|left"
-            android:maxLines="1"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:scrollbars="vertical"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/todo_priority_tv"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/todo_priority_spinner" />
-
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
