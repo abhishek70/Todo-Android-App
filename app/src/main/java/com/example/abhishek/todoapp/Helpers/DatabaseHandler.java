@@ -159,7 +159,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             todoItems.clear();
 
             // Select All Query
-            String selectQuery = "SELECT  * FROM " + TODO_TABLE_NAME;
+            String selectQuery = "SELECT  * FROM " + TODO_TABLE_NAME + " ORDER BY " + TODO_DATE;
 
             // Getting access for reading to the SQLite Database
             SQLiteDatabase db = this.getWritableDatabase();
