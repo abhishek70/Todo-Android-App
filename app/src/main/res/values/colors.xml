@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!-- App Bar -->
+    <color name="colorPrimary">#4A312A</color>
+
+    <!-- Status Bar -->
+    <color name="colorPrimaryDark">#2F1D1A</color>
+
+    <color name="colorAccent">#2F1D1A</color>
+
+    <!-- Background App -->
+    <color name="colorBackground">#FFF7DA</color>
+
+    <!-- Background color for the TodoItem -->
+    <color name="todoListItem">#16AFCA</color>
+
+    <color name="highPriority">#d9534f</color>
+
+    <color name="mediumPriority">#f0ad4e</color>
+
+    <color name="lowPriority">#337ab7</color>
 </resources>

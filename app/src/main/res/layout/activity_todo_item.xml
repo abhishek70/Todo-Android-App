@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/colorBackground"
         android:orientation="vertical" >
 
         <!-- TodoName -->
@@ -74,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
+                android:popupBackground="@color/colorBackground"
                 android:id="@+id/todo_priority_spinner" />
 
         </LinearLayout>

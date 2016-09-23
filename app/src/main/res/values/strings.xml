@@ -24,4 +24,5 @@
         <item>MEDIUM</item>
         <item>HIGH</item>
     </string-array>
+    <string name="todo_due_date_label">Due :</string>
 </resources>

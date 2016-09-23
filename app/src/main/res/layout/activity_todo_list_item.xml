@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/todoListItem"
     android:minHeight="@dimen/list_item_height">
 
     <LinearLayout
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textAppearance="?android:textAppearanceMedium"
             tools:text="Github"/>
 
@@ -32,7 +33,7 @@
             android:id="@+id/todo_note_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             tools:text="Submit code to the Github"
             android:textSize="16sp" />
 
@@ -41,7 +42,7 @@
             android:id="@+id/todo_due_date_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#5D5D5D"
+            android:textColor="#FFFFFF"
             tools:text="Sep 21, 2016"
             android:textSize="12sp" />
 
@@ -64,7 +65,6 @@
             android:textSize="16sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="#000000"
             android:textAppearance="?android:textAppearanceMedium"
             tools:text="MEDIUM" />
 
