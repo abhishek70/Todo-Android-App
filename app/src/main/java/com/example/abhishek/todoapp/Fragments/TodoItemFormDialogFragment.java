@@ -1,11 +1,8 @@
 package com.example.abhishek.todoapp.Fragments;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +15,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.example.abhishek.todoapp.Activities.TodoItemActivity;
 import com.example.abhishek.todoapp.Helpers.DatabaseHandler;
 import com.example.abhishek.todoapp.Models.TodoItem;
 import com.example.abhishek.todoapp.R;
-
 import android.support.v4.app.DialogFragment;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +28,7 @@ import java.util.Locale;
 
 /**
  * Created by abhishek on 9/28/16.
+ * TodoItem Edit Form Dialog Fragment
  */
 
 public class TodoItemFormDialogFragment extends DialogFragment implements TextView.OnEditorActionListener {
@@ -46,16 +40,24 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
     private long todoId;
     private DatabaseHandler db;
 
+    /**
+     * Constructor
+     */
     public TodoItemFormDialogFragment() {
         // Empty constructor required for DialogFragment
     }
 
-    // 1. Defines the listener interface with a method passing back data result.
+    // Defines the listener interface with a method passing back data result.
     public interface TodoItemFormDialogListener {
         void onFinishEditDialog(String inputText);
     }
 
 
+    /**
+     * Create TodoItem Form Dialog fragment instance and store the data in args
+     * @param todoItem
+     * @return
+     */
     public static TodoItemFormDialogFragment newInstance(TodoItem todoItem) {
         TodoItemFormDialogFragment frag = new TodoItemFormDialogFragment();
         Bundle args = new Bundle();
@@ -69,6 +71,13 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
     }
 
 
+    /**
+     * Loads the custom view xml file
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,13 +85,20 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
     }
 
 
+    /**
+     * This method is called when the dialog view is created
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Database Handler
         db = new DatabaseHandler(getContext());
 
-        // Get field from view
+        // Get fields from view
         todoName = (EditText) view.findViewById(R.id.todo_name_et);
         todoNote = (EditText) view.findViewById(R.id.todo_note_et);
         todoDate = (EditText) view.findViewById(R.id.todo_date_et);
@@ -94,14 +110,23 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
         // load priority spinner
         loadTodoPrioritySpinner();
 
-        // Fetch arguments from bundle and set title
+        // Fetch arguments from bundle and set data
         String title = getArguments().getString("todoName");
         getDialog().setTitle(title);
 
+        // TodoName
         todoName.setText(getArguments().getString("todoName"));
+
+        // TodoNote
         todoNote.setText(getArguments().getString("todoNote"));
+
+        // TodoPriority
         todoPrioritySpinner.setSelection(getSpinnerIndexbyValue(getArguments().getString("todoPriority")));
+
+        // TodoDate
         todoDate.setText(getArguments().getString("todoDate"));
+
+        // TodoId
         todoId = getArguments().getLong("todoId");
 
         // Show soft keyboard automatically and request focus to field
@@ -109,13 +134,14 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
+        // Calling DONE action listener for the keyboard event set in the view file
         todoNote.setOnEditorActionListener(this);
 
     }
 
 
     /**
-     * Load Date Picker Dialog Fragment
+     * Load Date Picker Dialog Fragment on clicking todoDate edit text view
      */
     private void loadTodoDatePicker() {
 
@@ -207,20 +233,32 @@ public class TodoItemFormDialogFragment extends DialogFragment implements TextVi
     }
 
 
+    /**
+     * This method is called when the user click the DONE on the keyboard
+     * @param v
+     * @param actionId
+     * @param event
+     * @return
+     */
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
         if (EditorInfo.IME_ACTION_DONE == actionId) {
-            // Return input text back to activity through the implemented listener
+
+            // Return update data back to activity through the implemented listener
             TodoItemFormDialogListener listener = (TodoItemFormDialogListener) getActivity();
 
+            // Storing the todoItem Update data
             String name     = todoName.getText().toString();
             String note     = todoNote.getText().toString();
             String priority = prioritySel;
             String dueDate  = todoDate.getText().toString();
 
+            // Updating in the db
             boolean success = db.updateTodoItem(new TodoItem(todoId,name,note,priority,dueDate));
 
             listener.onFinishEditDialog(name);
+
             // Close the dialog and return back to the parent activity
             dismiss();
             return true;

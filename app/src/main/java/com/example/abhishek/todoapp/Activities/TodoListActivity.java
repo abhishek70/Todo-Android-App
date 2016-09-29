@@ -281,16 +281,26 @@ public class TodoListActivity extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     * This method is called when the user click on the list view item
+     * @param todoId
+     */
     private void showEditDialog(long todoId) {
 
+        // Fetching the todoItem Data
         TodoItem todoItem = db.getTodoItemById((int) todoId);
 
+        // Loading the TodoItem Form Dialog and passing the todoItem Data
         FragmentManager fm = getSupportFragmentManager();
         TodoItemFormDialogFragment todoItemFormDialogFragment = TodoItemFormDialogFragment.newInstance(todoItem);
         todoItemFormDialogFragment.show(fm, "fragment_edit_name");
 
     }
 
+    /**
+     * This callback method is called from the todoItemFormDialogFragment onEditorAction
+     * @param inputText
+     */
     @Override
     public void onFinishEditDialog(String inputText) {
 
@@ -302,7 +312,8 @@ public class TodoListActivity extends AppCompatActivity implements
 
         // Notifying the adapter to load the updated todoItem
         todoListAdapter.notifyDataSetChanged();
-        Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
 
     }
 
