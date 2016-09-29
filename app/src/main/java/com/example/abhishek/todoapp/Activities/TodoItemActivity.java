@@ -55,7 +55,7 @@ public class TodoItemActivity extends AppCompatActivity {
         //load date picker dialog
         loadTodoDatePicker();
 
-        // loa priority spinner
+        // load priority spinner
         loadTodoPrioritySpinner();
 
         // perform add/edit operation depending on the action

@@ -94,16 +94,24 @@
                 android:textSize="14sp"
                 android:text="@string/todo_note_tv"/>
 
+            <!--<EditText-->
+                <!--android:id="@+id/todo_note_et"-->
+                <!--android:inputType="textMultiLine"-->
+                <!--android:lines="1"-->
+                <!--android:minLines="1"-->
+                <!--android:gravity="top|left"-->
+                <!--android:maxLines="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:scrollbars="vertical"/>-->
+
             <EditText
                 android:id="@+id/todo_note_et"
-                android:inputType="textMultiLine"
-                android:lines="1"
-                android:minLines="1"
-                android:gravity="top|left"
-                android:maxLines="1"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:scrollbars="vertical"/>
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:imeActionLabel="@string/action_save"
+                android:imeOptions="actionDone"/>
 
         </LinearLayout>
 

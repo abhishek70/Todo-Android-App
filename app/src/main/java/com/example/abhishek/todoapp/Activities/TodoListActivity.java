@@ -3,6 +3,7 @@ package com.example.abhishek.todoapp.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.abhishek.todoapp.Fragments.TodoItemFormDialogFragment;
 import com.example.abhishek.todoapp.R;
 import com.example.abhishek.todoapp.Adapters.TodoListAdapter;
 import com.example.abhishek.todoapp.Helpers.DatabaseHandler;
@@ -24,7 +26,8 @@ import java.util.ArrayList;
  */
 public class TodoListActivity extends AppCompatActivity implements
         AdapterView.OnItemClickListener,
-        AdapterView.OnItemLongClickListener {
+        AdapterView.OnItemLongClickListener,
+        TodoItemFormDialogFragment.TodoItemFormDialogListener {
 
     private ArrayList<TodoItem> todoItems;
     private ListView todoListView;
@@ -206,7 +209,7 @@ public class TodoListActivity extends AppCompatActivity implements
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+/*
         // Creating explicit intent
         Intent intent = new Intent(this,TodoItemActivity.class);
 
@@ -216,6 +219,9 @@ public class TodoListActivity extends AppCompatActivity implements
 
         // open the child activity
         startActivityForResult(intent, UPDATE_REQUEST_CODE);
+
+       */
+        showEditDialog(todoItems.get(position).getTodoId());
     }
 
 
@@ -274,4 +280,30 @@ public class TodoListActivity extends AppCompatActivity implements
 
         return true;
     }
+
+    private void showEditDialog(long todoId) {
+
+        TodoItem todoItem = db.getTodoItemById((int) todoId);
+
+        FragmentManager fm = getSupportFragmentManager();
+        TodoItemFormDialogFragment todoItemFormDialogFragment = TodoItemFormDialogFragment.newInstance(todoItem);
+        todoItemFormDialogFragment.show(fm, "fragment_edit_name");
+
+    }
+
+    @Override
+    public void onFinishEditDialog(String inputText) {
+
+        // Clear the todoItem List
+        todoItems.clear();
+
+        // Fetch and Store the todoList in the todoItem List
+        todoItems.addAll(db.getAllTodos());
+
+        // Notifying the adapter to load the updated todoItem
+        todoListAdapter.notifyDataSetChanged();
+        Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
+
+    }
+
 }
